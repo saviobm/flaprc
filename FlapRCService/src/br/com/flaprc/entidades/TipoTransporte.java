@@ -3,12 +3,16 @@
  */
 package br.com.flaprc.entidades;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -32,7 +36,7 @@ public class TipoTransporte extends FlapRCEntidade {
 	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_unidade", columnDefinition = "id_unidade", insertable = true, updatable = true)
+	@JoinColumn(name = "id_unidade", columnDefinition = "id_unidade", insertable = false, updatable = false)
 	private Unidade unidade;
 	
 	@Column(name = "descricao")
@@ -43,6 +47,13 @@ public class TipoTransporte extends FlapRCEntidade {
 	
 	@Column(name = "valor_unidade")
 	private Double valor;
+	
+	@ManyToMany
+	@JoinColumns(value = {
+			@JoinColumn(name = "id_transportadora", referencedColumnName = "id_transportadora", insertable = false, updatable = false),
+			@JoinColumn(name = "id_tipo_transporte", referencedColumnName = "id_tipo_transporte", insertable = false, updatable = false)
+	})
+	private List<Transportadora> listaTransportadora;
 
 	/**
 	 * @return the id
@@ -113,5 +124,19 @@ public class TipoTransporte extends FlapRCEntidade {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	
+
+	/**
+	 * @return the listaTransportadora
+	 */
+	public List<Transportadora> getListaTransportadora() {
+		return listaTransportadora;
+	}
+
+	/**
+	 * @param listaTransportadora the listaTransportadora to set
+	 */
+	public void setListaTransportadora(List<Transportadora> listaTransportadora) {
+		this.listaTransportadora = listaTransportadora;
+	}
+
 }
