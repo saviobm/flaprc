@@ -43,6 +43,11 @@
 			<version>1.0-SP4</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>br.com.flaprc</groupId>
+			<artifactId>flaprc-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
