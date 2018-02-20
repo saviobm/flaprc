@@ -3,11 +3,15 @@
  */
 package br.com.flaprc.entidades;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +38,9 @@ public class Imagem extends FlapRCEntidade {
 	
 	@Column(name = "descricao", length = 200)
 	private String descricao;
+	
+	@OneToMany(mappedBy = "imagem", fetch = FetchType.LAZY)
+	private List<Carrinho> listaCarrinho;
 
 	/**
 	 * @return the id
@@ -75,6 +82,20 @@ public class Imagem extends FlapRCEntidade {
 	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	/**
+	 * @return the listaCarrinho
+	 */
+	public List<Carrinho> getListaCarrinho() {
+		return listaCarrinho;
+	}
+
+	/**
+	 * @param listaCarrinho the listaCarrinho to set
+	 */
+	public void setListaCarrinho(List<Carrinho> listaCarrinho) {
+		this.listaCarrinho = listaCarrinho;
 	}
 	
 }

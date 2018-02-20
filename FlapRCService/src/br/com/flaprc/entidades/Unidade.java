@@ -1,10 +1,14 @@
 package br.com.flaprc.entidades;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +38,15 @@ public class Unidade extends FlapRCEntidade {
 
 	@Column(name = "valor")
 	private Integer valor;
+	
+	@OneToMany(mappedBy = "unidade", fetch = FetchType.LAZY)
+	private List<Produto> listaProduto;
+	
+	@OneToMany(mappedBy = "unidade", fetch = FetchType.LAZY)
+	private List<ItemProduto> listaItemProduto;
+	
+	@OneToMany(mappedBy = "unidade", fetch = FetchType.LAZY)
+	private List<TipoTransporte> listaTipoTransporte;
 
 	/**
 	 * @return the id
@@ -89,6 +102,48 @@ public class Unidade extends FlapRCEntidade {
 	 */
 	public void setValor(Integer valor) {
 		this.valor = valor;
+	}
+
+	/**
+	 * @return the listaProduto
+	 */
+	public List<Produto> getListaProduto() {
+		return listaProduto;
+	}
+
+	/**
+	 * @param listaProduto the listaProduto to set
+	 */
+	public void setListaProduto(List<Produto> listaProduto) {
+		this.listaProduto = listaProduto;
+	}
+
+	/**
+	 * @return the listaItemProduto
+	 */
+	public List<ItemProduto> getListaItemProduto() {
+		return listaItemProduto;
+	}
+
+	/**
+	 * @param listaItemProduto the listaItemProduto to set
+	 */
+	public void setListaItemProduto(List<ItemProduto> listaItemProduto) {
+		this.listaItemProduto = listaItemProduto;
+	}
+
+	/**
+	 * @return the listaTipoTransporte
+	 */
+	public List<TipoTransporte> getListaTipoTransporte() {
+		return listaTipoTransporte;
+	}
+
+	/**
+	 * @param listaTipoTransporte the listaTipoTransporte to set
+	 */
+	public void setListaTipoTransporte(List<TipoTransporte> listaTipoTransporte) {
+		this.listaTipoTransporte = listaTipoTransporte;
 	}
 	
 }
