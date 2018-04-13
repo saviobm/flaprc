@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -67,6 +69,21 @@ public class Usuario extends FlapRCEntidade {
 	
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private List<Carrinho> listaCarrinho;
+	
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+	private List<Email> listaEmail;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="USUARIO_ALCADA", joinColumns={
+		@JoinColumn(name = "id_alcadas", referencedColumnName = "id_alcadas"),
+		@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")})
+	private List<Alcadas> listaAlcadas;
+	
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+	private List<Mensagem> listaMensagem;
+	
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+	private List<QualificacaoProduto> listaQualificacaoProduto;
 
 	/**
 	 * @return the id
@@ -220,6 +237,62 @@ public class Usuario extends FlapRCEntidade {
 	 */
 	public void setListaCarrinho(List<Carrinho> listaCarrinho) {
 		this.listaCarrinho = listaCarrinho;
+	}
+
+	/**
+	 * @return the listaEmail
+	 */
+	public List<Email> getListaEmail() {
+		return listaEmail;
+	}
+
+	/**
+	 * @param listaEmail the listaEmail to set
+	 */
+	public void setListaEmail(List<Email> listaEmail) {
+		this.listaEmail = listaEmail;
+	}
+
+	/**
+	 * @return the listaAlcadas
+	 */
+	public List<Alcadas> getListaAlcadas() {
+		return listaAlcadas;
+	}
+
+	/**
+	 * @param listaAlcadas the listaAlcadas to set
+	 */
+	public void setListaAlcadas(List<Alcadas> listaAlcadas) {
+		this.listaAlcadas = listaAlcadas;
+	}
+
+	/**
+	 * @return the listaMensagem
+	 */
+	public List<Mensagem> getListaMensagem() {
+		return listaMensagem;
+	}
+
+	/**
+	 * @param listaMensagem the listaMensagem to set
+	 */
+	public void setListaMensagem(List<Mensagem> listaMensagem) {
+		this.listaMensagem = listaMensagem;
+	}
+
+	/**
+	 * @return the listaQualificacaoProduto
+	 */
+	public List<QualificacaoProduto> getListaQualificacaoProduto() {
+		return listaQualificacaoProduto;
+	}
+
+	/**
+	 * @param listaQualificacaoProduto the listaQualificacaoProduto to set
+	 */
+	public void setListaQualificacaoProduto(List<QualificacaoProduto> listaQualificacaoProduto) {
+		this.listaQualificacaoProduto = listaQualificacaoProduto;
 	}
 	
 }

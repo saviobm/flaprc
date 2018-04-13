@@ -41,7 +41,10 @@ public class Imagem extends FlapRCEntidade {
 	
 	@OneToMany(mappedBy = "imagem", fetch = FetchType.LAZY)
 	private List<Carrinho> listaCarrinho;
-
+	
+	@OneToMany(mappedBy = "imagem", fetch = FetchType.LAZY)
+	private List<Pagamento> listaPagamento;
+	
 	/**
 	 * @return the id
 	 */
@@ -96,6 +99,20 @@ public class Imagem extends FlapRCEntidade {
 	 */
 	public void setListaCarrinho(List<Carrinho> listaCarrinho) {
 		this.listaCarrinho = listaCarrinho;
+	}
+
+	/**
+	 * @return the listaPagamento
+	 */
+	public List<Pagamento> getListaPagamento() {
+		return listaPagamento;
+	}
+
+	/**
+	 * @param listaPagamento the listaPagamento to set
+	 */
+	public void setListaPagamento(List<Pagamento> listaPagamento) {
+		this.listaPagamento = listaPagamento;
 	}
 	
 }

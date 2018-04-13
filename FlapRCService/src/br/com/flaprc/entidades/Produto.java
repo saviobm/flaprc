@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -53,13 +53,14 @@ public class Produto extends FlapRCEntidade {
 	private List<IntencaoProduto> listaItencaoProduto;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinColumns({
+	@JoinTable(name="PRODUTO_ITEM_PRODUTO", joinColumns={
 		@JoinColumn(name = "id_item_produto", referencedColumnName = "id_item_produto"),
 		@JoinColumn(name = "id_produto", referencedColumnName = "id_produto")})
 	private List<ItemProduto> listaItemProduto;
 	
 	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY)
 	private List<Indicacao> listaIndicacao;
+	
 
 	/**
 	 * @return the listaProdutoFornecedor

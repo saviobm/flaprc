@@ -1,12 +1,16 @@
 package br.com.flaprc.entidades;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -47,6 +51,9 @@ public class Endereco extends FlapRCEntidade {
 	
 	@Column(name = "entrega")
 	private Boolean entrega;
+	
+	@OneToMany(mappedBy = "endereco", fetch = FetchType.LAZY)
+	private List<Transportadora> listaTransportadora;
 
 	/**
 	 * @return the id
@@ -144,6 +151,20 @@ public class Endereco extends FlapRCEntidade {
 	 */
 	public void setEntrega(Boolean entrega) {
 		this.entrega = entrega;
+	}
+
+	/**
+	 * @return the listaTransportadora
+	 */
+	public List<Transportadora> getListaTransportadora() {
+		return listaTransportadora;
+	}
+
+	/**
+	 * @param listaTransportadora the listaTransportadora to set
+	 */
+	public void setListaTransportadora(List<Transportadora> listaTransportadora) {
+		this.listaTransportadora = listaTransportadora;
 	}
 	
 }
